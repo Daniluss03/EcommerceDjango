@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,11 +30,11 @@
                             Categorías
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                            <li><a class="dropdown-item" href="#">Electrónica</a></li>
-                            <li><a class="dropdown-item" href="#">Ropa</a></li>
-                            <li><a class="dropdown-item" href="#">Hogar</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Ver todas</a></li>
+                            {% for category in all_categories %}
+                            <li>
+                                <a class="dropdown-item" href="/categorias/{{ category.id }}/">{{ category.name | capfirst}}</a>
+                            </li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>
@@ -52,14 +54,11 @@
         </div>
     </nav>
 
-
 {% block content %}
-
 
 {% endblock %}
 
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS (loaded once) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
